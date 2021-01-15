@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>IWA Uniqbe</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="loginForm">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" clearInput type="email" [class.invalid]="
+          !loginForm.controls.email.valid &&
+          loginForm.controls.email.dirty
+        ">
+      </ion-input>
+    </ion-item>
+    <ion-item lines="none" *ngIf="
+        !loginForm.controls.email.valid &&
+        loginForm.controls.email.dirty
+      ">
+      <p class="errorMessage">Please enter a valid email.</p>
+    </ion-item>
+
+    <br />
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input formControlName="password" clearInput type="password" [class.invalid]="
+          !loginForm.controls.password.valid &&
+          loginForm.controls.password.dirty
+        ">
+      </ion-input>
+    </ion-item>
+    <ion-item lines="none" *ngIf="
+        !loginForm.controls.password.valid &&
+        loginForm.controls.password.dirty
+      ">
+      <p class="errorMessage">Please enter a valid password.</p>
+    </ion-item>
+
+    <br />
+
+    <ion-button [disabled]="!loginForm.valid" (click)="loginUser(fab)" expand="block">
+      Login
+    </ion-button>
+  </form>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" #fab>
+    <ion-fab-button>
+      <ion-icon name="arrow-dropup"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="person" (click)="forgotPassword()"></ion-icon>
+      </ion-fab-button>
+      <!-- <ion-fab-button>
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-fab-button> -->
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
